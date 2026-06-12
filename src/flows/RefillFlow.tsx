@@ -26,7 +26,7 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
           <div className="mj-progress-fill" style={{ width: ((step + 1) / 3) * 100 + "%" }} />
         </div>
       )}
-      <div className="mj-body scroll">
+      <div className="mj-body scroll" aria-live="polite">
         {step === 0 && (
           <div className="mj-fade">
             <h2 className="mj-flowtitle">Confirm your prescription</h2>

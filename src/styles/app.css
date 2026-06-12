@@ -1,4 +1,4 @@
-/* MyJourney prototype styles — built on ONE Journey tokens (../../styles.css). */
+/* MyJourney app styles — built on the ONE Journey tokens (tokens/, brand.css). */
 
 /* Page frame: centered mobile column on any screen */
 html, body { margin: 0; padding: 0; height: 100%; }
@@ -199,3 +199,10 @@ button { font-family: inherit; }
 .mj-sheet.tall .mj-about p { margin: 0 0 12px; font-size: 13px; line-height: 19px; color: var(--oj-navy); }
 .mj-sheet.tall .mj-about p strong { color: var(--oj-ink); }
 .mj-aboutfoot { color: var(--oj-gray) !important; font-size: 12px !important; }
+
+/* Reduced motion: skip entrance animations and micro-motion */
+@media (prefers-reduced-motion: reduce) {
+  .mj-fade, .mj-sheet { animation: none; }
+  .mj-progress-fill, .mj-mode, .mj-taskcard.tap, .mj-quicktile, .mj-datecard, .mj-optcard { transition: none; }
+  .mj-taskcard.tap:hover, .mj-quicktile:hover { transform: none; }
+}

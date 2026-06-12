@@ -40,7 +40,7 @@ export function CheckinFlow({ navigate }: { navigate: Navigate }) {
           <div className="mj-progress-fill" style={{ width: ((idx + 1) / questions.length) * 100 + "%" }} />
         </div>
       )}
-      <div className="mj-body scroll">
+      <div className="mj-body scroll" aria-live="polite">
         {!done ? (
           <div className="mj-fade" key={idx}>
             <p className="mj-qcount">
