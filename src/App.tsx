@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, type CSSProperties } from "react";
 import type { NavTarget, Route } from "./lib/nav";
 import { store } from "./store/store";
 import { Ic } from "./components/Ic";
@@ -11,6 +11,44 @@ import { CheckinFlow } from "./flows/CheckinFlow";
 import { CopaySheet } from "./flows/CopaySheet";
 import { AboutOverlay } from "./flows/AboutOverlay";
 import { NotificationsSheet } from "./flows/NotificationsSheet";
+
+/* Desktop stage dressing: the brand's pill bars raining gently down the
+   Deep Navy field, each at its own size, speed, and opacity — like
+   droplets on glass. Randomized once per visit; negative delays start
+   the stream mid-fall so the field is never empty. Reduced motion gets
+   a static scatter; mobile hides the backdrop entirely. */
+const rainPalette = [
+  { bg: "#1c4368", min: 0.3, max: 0.55 },
+  { bg: "#248dc9", min: 0.08, max: 0.18 },
+  { bg: "#ffffff", min: 0.03, max: 0.06 },
+];
+
+function makeRain(reduced: boolean): CSSProperties[] {
+  return Array.from({ length: 12 }, (_, i) => {
+    const color = rainPalette[i % rainPalette.length];
+    const fallSeconds = 24 + Math.random() * 36; // one full crossing: 24–60s
+    return {
+      left: `${2 + Math.random() * 94}%`,
+      top: reduced ? `${Math.random() * 80}%` : "-50vh",
+      width: 22 + Math.round(Math.random() * 68),
+      height: `${14 + Math.random() * 28}vh`,
+      background: color.bg,
+      opacity: color.min + Math.random() * (color.max - color.min),
+      animation: reduced ? "none" : `mj-rain ${fallSeconds.toFixed(1)}s linear ${(-Math.random() * fallSeconds).toFixed(1)}s infinite`,
+    };
+  });
+}
+
+function Backdrop() {
+  const [pills] = useState(() => makeRain(window.matchMedia("(prefers-reduced-motion: reduce)").matches));
+  return (
+    <div className="mj-backdrop" aria-hidden="true">
+      {pills.map((style, i) => (
+        <span key={i} style={style} />
+      ))}
+    </div>
+  );
+}
 
 export default function App() {
   const [route, setRoute] = useState<Route>("home");
@@ -58,6 +96,7 @@ export default function App() {
 
   return (
     <div className="mj-frame">
+      <Backdrop />
       {/* key remounts the screen per route: scroll resets and the fade-in replays */}
       <div className="mj-device" key={route}>
         {route === "home" && <HomeScreen navigate={navigate} onInfo={onInfo} onBell={onBell} />}
