@@ -60,7 +60,7 @@ export function SupportScreen({ navigate, onInfo, onBell }: { navigate: Navigate
           <p className="mj-tasksub">Your specialty pharmacist &middot; replies in ~1 hr</p>
         </div>
       </div>
-      <div className="mj-body scroll mj-thread" ref={threadRef}>
+      <div className="mj-body scroll mj-thread" ref={threadRef} tabIndex={0} aria-label="Conversation with Sam">
         {s.messages.map((m, i) => (
           <div key={i} className={"mj-msg " + (m.from === "me" ? "me" : "pharm")}>
             <p className="mj-msgtext">{m.text}</p>

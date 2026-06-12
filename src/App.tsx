@@ -26,11 +26,11 @@ const rainPalette = [
 function makeRain(reduced: boolean): CSSProperties[] {
   return Array.from({ length: 12 }, (_, i) => {
     const color = rainPalette[i % rainPalette.length];
-    const fallSeconds = 24 + Math.random() * 36; // one full crossing: 24–60s
+    const fallSeconds = 48 + Math.random() * 72; // one full crossing: 48–120s
     return {
       left: `${2 + Math.random() * 94}%`,
       top: reduced ? `${Math.random() * 80}%` : "-50vh",
-      width: 22 + Math.round(Math.random() * 68),
+      width: 72, // uniform pills, varied only in length, speed, and opacity
       height: `${14 + Math.random() * 28}vh`,
       background: color.bg,
       opacity: color.min + Math.random() * (color.max - color.min),

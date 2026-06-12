@@ -1,4 +1,6 @@
+import { useRef } from "react";
 import { cal } from "../lib/calendar";
+import { useDialog } from "../lib/useDialog";
 import { store, useMJ } from "../store/store";
 import { Ic } from "../components/Ic";
 import { PillBtn } from "../components/PillBtn";
@@ -7,13 +9,25 @@ import { PillBtn } from "../components/PillBtn";
 export function CopaySheet({ onClose }: { onClose: () => void }) {
   const s = useMJ();
   const renewed = s.tasks.copay;
+  const ref = useRef<HTMLDivElement>(null);
+  useDialog(ref, onClose);
   return (
     <div className="mj-sheetwrap" onClick={onClose}>
-      <div className="mj-sheet" onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mj-copay-title"
+        className="mj-sheet"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mj-sheethandle" />
+        <button type="button" className="mj-sheetclose" onClick={onClose} aria-label="Close">
+          <Ic name="x" size={18} color="var(--oj-navy)" />
+        </button>
         {!renewed ? (
           <div>
-            <h3 className="mj-sheettitle">Renew co-pay assistance</h3>
+            <h3 className="mj-sheettitle" id="mj-copay-title">Renew co-pay assistance</h3>
             <p className="mj-sheetsub">
               Your manufacturer co-pay program covers <strong>$240 per fill</strong>. It expires {cal.copayExpires} —
               renew now and your co-pay stays <strong>$0</strong> for the next 12 months.
@@ -43,7 +57,7 @@ export function CopaySheet({ onClose }: { onClose: () => void }) {
             <span className="mj-successring">
               <Ic name="check" size={34} color="#fff" />
             </span>
-            <h3 className="mj-sheettitle" style={{ textAlign: "center" }}>
+            <h3 className="mj-sheettitle" id="mj-copay-title" style={{ textAlign: "center" }}>
               Renewed through {cal.copayThrough}
             </h3>
             <p className="mj-successsub">Nothing else to do — it applies automatically to every order.</p>

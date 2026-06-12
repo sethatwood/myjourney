@@ -7,8 +7,9 @@
 <p>
   <a href="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml"><img src="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/TypeScript-strict-143652" alt="TypeScript strict">
-  <img src="https://img.shields.io/badge/tests-15%20unit%20%2B%2026%20e2e-42b0ff" alt="Tests: 15 unit + 26 e2e">
-  <img src="https://img.shields.io/badge/deploys-Forge%20on%20green%20main-143652" alt="Deploys: Forge on green main">
+  <img src="https://img.shields.io/badge/tests-15%20unit%20%2B%2033%20e2e-42b0ff" alt="Tests: 15 unit + 33 e2e">
+  <img src="https://img.shields.io/badge/a11y-axe%20audited%20in%20CI-143652" alt="Accessibility: axe audited in CI">
+  <img src="https://img.shields.io/badge/deploys-Forge%20on%20green%20main-42b0ff" alt="Deploys: Forge on green main">
 </p>
 
 **A working specialty-patient coordination app.** Maya Torres is six months into a specialty therapy for MS — MyJourney is the app that keeps her refills, symptom check-ins, co-pay assistance, and pharmacist in one coordinated place.
@@ -62,6 +63,15 @@ npm test           # unit tests
 npm run test:e2e   # Playwright suite (also regenerates docs/ screenshots)
 npm run build      # type-check + production build
 ```
+
+## Accessibility
+
+Patients include people with low vision, tremor, fatigue, and screen readers — in this problem space accessibility is table stakes, not polish.
+
+- **Keyboard**: everything is operable without a mouse. Bottom sheets follow the WAI-ARIA dialog pattern — focus moves in on open, Tab cycles inside, Escape closes, and focus returns to the opener. A visible brand-blue focus ring marks every interactive element.
+- **Screen readers**: dialogs are labeled, flow steps announce politely as you advance, the reset toast is a status region, and decorative graphics (icons, the landing backdrop) are hidden from assistive tech.
+- **Motion**: every animation — including the landing page's raining pills — honors `prefers-reduced-motion`.
+- **Contrast**: text meets WCAG AA across the app. An **axe-core audit (WCAG 2.1 A/AA, contrast checks on) runs in CI on every push.** One documented exception: the Journey Blue hero card keeps the brand's own white-on-blue signature, excluded from the audit and held for design review rather than silently restyled.
 
 ## How this ships for real
 

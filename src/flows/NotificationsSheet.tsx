@@ -1,5 +1,7 @@
+import { useRef } from "react";
 import { cal } from "../lib/calendar";
 import type { NavTarget } from "../lib/nav";
+import { useDialog } from "../lib/useDialog";
 import { useMJ } from "../store/store";
 import { Ic, type IconName } from "../components/Ic";
 
@@ -13,6 +15,8 @@ interface NotificationsSheetProps {
    the open items, each one tap away from its flow. */
 export function NotificationsSheet({ onClose, onOpen }: NotificationsSheetProps) {
   const s = useMJ();
+  const ref = useRef<HTMLDivElement>(null);
+  useDialog(ref, onClose);
 
   const items: { icon: IconName; title: string; sub: string; target: NavTarget }[] = [];
   if (!s.refill.scheduled) {
@@ -42,12 +46,19 @@ export function NotificationsSheet({ onClose, onOpen }: NotificationsSheetProps)
 
   return (
     <div className="mj-sheetwrap" onClick={onClose}>
-      <div className="mj-sheet" onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mj-notifs-title"
+        className="mj-sheet"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mj-sheethandle" />
         <button type="button" className="mj-sheetclose" onClick={onClose} aria-label="Close">
           <Ic name="x" size={18} color="var(--oj-navy)" />
         </button>
-        <h3 className="mj-sheettitle">Notifications</h3>
+        <h3 className="mj-sheettitle" id="mj-notifs-title">Notifications</h3>
         {items.length > 0 ? (
           <div className="mj-stack" style={{ marginBottom: 6 }}>
             {items.map((it) => (

@@ -21,7 +21,7 @@ export default defineConfig({
     {
       name: "mobile",
       use: { ...devices["iPhone 14"] },
-      testIgnore: "**/screenshots.spec.ts",
+      testIgnore: ["**/screenshots.spec.ts", "**/a11y.spec.ts"],
     },
   ],
 });

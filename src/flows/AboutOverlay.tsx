@@ -1,16 +1,28 @@
+import { useRef } from "react";
+import { useDialog } from "../lib/useDialog";
 import { Ic } from "../components/Ic";
 
 /* The meta-narrative: what this is, what's real, how it would ship.
-   Opens automatically on a first visit; closes via the X or the backdrop. */
+   Opens automatically on a first visit; closes via the X, the backdrop,
+   or Escape. */
 export function AboutOverlay({ onClose, onReset }: { onClose: () => void; onReset: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useDialog(ref, onClose);
   return (
     <div className="mj-sheetwrap" onClick={onClose}>
-      <div className="mj-sheet tall" onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={ref}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mj-about-title"
+        className="mj-sheet tall"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="mj-sheethandle" />
         <button type="button" className="mj-sheetclose" onClick={onClose} aria-label="Close">
           <Ic name="x" size={18} color="var(--oj-navy)" />
         </button>
-        <h3 className="mj-sheettitle">About this prototype</h3>
+        <h3 className="mj-sheettitle" id="mj-about-title">About this prototype</h3>
         <div className="mj-about">
           <p>
             <strong>What this is.</strong> An original take on a specialty-patient coordination app in the CassianRx
@@ -30,7 +42,8 @@ export function AboutOverlay({ onClose, onReset }: { onClose: () => void; onRese
           <p>
             <strong>What&rsquo;s real here.</strong> All state (refill, check-in, co-pay, messages, view preference)
             persists locally and every flow completes end-to-end. Every date derives from the day you visit, so the
-            scenario always reads current. Auth, APIs, and the patient are simulated; the &ldquo;smart
+            scenario always reads current. Accessibility is real too: keyboard, screen reader, and reduced-motion
+            support throughout, audited in CI. Auth, APIs, and the patient are simulated; the &ldquo;smart
             scheduling&rdquo; recommendation shows where dose-calendar + transit-time logic would live.
           </p>
           <p className="mj-aboutfoot">
