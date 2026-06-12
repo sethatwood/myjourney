@@ -12,7 +12,7 @@ export function OrdersScreen({ navigate, onInfo, onBell }: { navigate: Navigate;
   const history: [string, string, string][] = [
     ["#1038", "Delivered " + cal.delivered1038, "Signed by M. Torres"],
     ["#1034", "Delivered " + cal.delivered1034, "Signed by M. Torres"],
-    ["#1029", "Delivered " + cal.delivered1029, "Left with front desk"],
+    ["#1029", "Delivered " + cal.delivered1029, "Signed by front desk"],
   ];
   return (
     <div className="mj-screen">
@@ -27,6 +27,7 @@ export function OrdersScreen({ navigate, onInfo, onBell }: { navigate: Navigate;
               <p className="mj-ordertitle">Shipment #1043</p>
               <span className="mj-orderchip">Arrives {s.refill.deliveryLabel}</span>
             </div>
+            <p className="mj-orderitem">Velmira 20&nbsp;mg &middot; 1 device &middot; 14-day supply</p>
             <Stepper doneCount={1} />
           </div>
         )}
@@ -36,10 +37,11 @@ export function OrdersScreen({ navigate, onInfo, onBell }: { navigate: Navigate;
             <p className="mj-ordertitle">Shipment #1042</p>
             <span className="mj-orderchip">Arrives {cal.transitArrives}</span>
           </div>
+          <p className="mj-orderitem">Injection supplies &middot; sharps container &amp; swabs</p>
           <Stepper doneCount={3} />
           <div className="mj-trackrow">
             <Ic name="truck" size={15} color="var(--oj-blue-deep)" />
-            <span>In transit &middot; left regional facility 6:40 AM &middot; signature required</span>
+            <span>In transit &middot; left regional facility overnight</span>
           </div>
         </div>
 
@@ -56,7 +58,6 @@ export function OrdersScreen({ navigate, onInfo, onBell }: { navigate: Navigate;
                 </p>
                 <p className="mj-tasksub">{note}</p>
               </div>
-              <Ic name="chevron-right" size={18} color="var(--oj-gray)" />
             </div>
           ))}
         </div>

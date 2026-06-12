@@ -12,6 +12,25 @@ function label(offset: number): string {
   return `${weekday}, ${monthDay}`;
 }
 
+function isWeekend(offset: number): boolean {
+  const d = new Date();
+  d.setHours(12, 0, 0, 0);
+  d.setDate(d.getDate() + offset);
+  return d.getDay() === 0 || d.getDay() === 6;
+}
+
+/** Mirrors the app's delivery-day derivation: three business days from +4. */
+function deliveryLabels(): string[] {
+  const out: string[] = [];
+  let o = 4;
+  while (out.length < 3) {
+    while (isWeekend(o)) o++;
+    out.push(label(o));
+    o++;
+  }
+  return out;
+}
+
 const consoleErrors: string[] = [];
 
 test.beforeEach(async ({ page }) => {
@@ -61,7 +80,7 @@ async function completeCheckin(page: Page) {
 test("home renders the default scenario with dates derived from today", async ({ page, isMobile }) => {
   await expect(page.locator(".mj-greet")).toContainText(", Maya");
   await expect(page.locator(".mj-greet-sub")).toContainText("3 things");
-  await expect(page.locator(".mj-hero-sub")).toContainText(`Schedule by ${label(5)}`);
+  await expect(page.locator(".mj-hero-sub")).toContainText(`Schedule by ${label(3)}`);
   await expect(page.locator(".mj-bell-dot")).toHaveCount(1);
   // Mobile goes full-bleed: the desktop page footer disappears.
   if (isMobile) {
@@ -79,11 +98,11 @@ test("journey mode shows the timeline and the preference persists", async ({ pag
   const titles = await page.locator(".mj-tl-title").allInnerTexts();
   expect(titles).toEqual([
     "Shipment delivered",
-    "Dose 6 taken",
+    "Dose 13 taken",
     "Refill window open",
     "MS Symptom Check-In",
     "Next dose due",
-    "Quarterly lab work",
+    "Six-month lab work",
   ]);
   await page.reload();
   await expect(page.getByRole("tab", { name: "Journey" })).toHaveAttribute("aria-selected", "true");
@@ -97,7 +116,7 @@ test("refill flow completes and propagates to orders, hero, and timeline", async
   await expect(page.locator(".mj-ordercard")).toHaveCount(2);
   await expect(page.locator(".mj-ordercard").first().locator(".mj-step-dot.on")).toHaveCount(1);
   await page.getByRole("button", { name: "Home" }).click();
-  await expect(page.locator(".mj-hero-navy")).toContainText("Next shipment arrives");
+  await expect(page.locator(".mj-hero-navy")).toContainText("Your refill arrives");
   await page.getByRole("tab", { name: "Journey" }).click();
   await expect(page.locator(".mj-tl-item.now")).toContainText("Shipment scheduled");
   // The scheduled card is a today event; the arrival date is detail, so
@@ -106,11 +125,15 @@ test("refill flow completes and propagates to orders, hero, and timeline", async
   await expect(page.locator(".mj-tl-item.now")).toContainText("arrives");
 });
 
-test("refill defaults to the recommended delivery day", async ({ page }) => {
+test("refill recommends a coherent business-day delivery", async ({ page }) => {
   await page.locator(".mj-hero-blue").getByText("Schedule refill").click();
+  const expected = deliveryLabels();
+  await expect(page.locator(".mj-smartsub")).toContainText(`Your next dose is ${label(8)}`);
+  await expect(page.locator(".mj-smartsub")).toContainText(`delivery by ${expected[1]}`);
   await page.getByText("Continue", { exact: true }).click();
   await expect(page.locator(".mj-datecard")).toHaveCount(3);
   await expect(page.locator(".mj-datecard.on")).toContainText("Recommended");
+  await expect(page.locator(".mj-datecard.on")).toContainText(expected[1]);
 });
 
 test("symptom check-in completes and the task reads done everywhere", async ({ page }) => {
@@ -148,7 +171,7 @@ test("state survives a reload", async ({ page }) => {
   await completeRefill(page);
   await page.getByText("Back to home").click();
   await page.reload();
-  await expect(page.locator(".mj-hero-navy")).toContainText("Next shipment arrives");
+  await expect(page.locator(".mj-hero-navy")).toContainText("Your refill arrives");
 });
 
 test("chat sends a message and the pharmacist replies", async ({ page }) => {

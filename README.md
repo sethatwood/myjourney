@@ -7,7 +7,7 @@
 <p>
   <a href="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml"><img src="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <img src="https://img.shields.io/badge/TypeScript-strict-143652" alt="TypeScript strict">
-  <img src="https://img.shields.io/badge/tests-12%20unit%20%2B%2020%20e2e-42b0ff" alt="Tests: 12 unit + 20 e2e">
+  <img src="https://img.shields.io/badge/tests-15%20unit%20%2B%2026%20e2e-42b0ff" alt="Tests: 15 unit + 26 e2e">
   <img src="https://img.shields.io/badge/deploys-Forge%20on%20green%20main-143652" alt="Deploys: Forge on green main">
 </p>
 

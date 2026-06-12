@@ -9,7 +9,7 @@ describe("store", () => {
   it("starts with the demo defaults", () => {
     const s = store.get();
     expect(s.homeMode).to.equal("action");
-    expect(s.tasks).to.deep.equal({ checkin: false, video: false, copay: false });
+    expect(s.tasks).to.deep.equal({ checkin: false, copay: false });
     expect(s.refill).to.deep.equal({ scheduled: false, deliveryLabel: null });
     expect(s.checkinAnswers).to.equal(null);
     expect(s.messages).to.have.length(3);

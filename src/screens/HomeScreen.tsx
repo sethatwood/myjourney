@@ -71,7 +71,7 @@ function ActionHome({ navigate }: { navigate: Navigate }) {
           <p className="mj-hero-eyebrow" style={{ color: "var(--oj-blue)" }}>
             Refill scheduled
           </p>
-          <h2 className="mj-hero-title">Next shipment arrives {s.refill.deliveryLabel}</h2>
+          <h2 className="mj-hero-title">Your refill arrives {s.refill.deliveryLabel}</h2>
           <p className="mj-hero-sub">Temperature-controlled packaging. We&rsquo;ll text you tracking updates.</p>
           <PillBtn variant="blue" onClick={() => navigate("orders")}>
             View order
@@ -110,7 +110,7 @@ function ActionHome({ navigate }: { navigate: Navigate }) {
             </span>
             <div className="mj-taskmeta">
               <p className="mj-tasktitle">Confirm co-pay assistance renewal</p>
-              <p className="mj-tasksub">2 min &middot; keeps your co-pay at $0</p>
+              <p className="mj-tasksub">Takes seconds &middot; keeps your co-pay at $0</p>
             </div>
             <Ic name="chevron-right" size={18} color="var(--oj-gray)" />
           </button>
@@ -130,7 +130,7 @@ function ActionHome({ navigate }: { navigate: Navigate }) {
             <Ic name="check" size={18} color="#fff" />
           </span>
           <div className="mj-taskmeta">
-            <p className="mj-tasktitle">Annual consent form</p>
+            <p className="mj-tasktitle">Care program consent</p>
             <p className="mj-tasksub">Signed {cal.consentSigned}</p>
           </div>
         </div>
@@ -138,14 +138,19 @@ function ActionHome({ navigate }: { navigate: Navigate }) {
 
       <SectionLabel>Quick actions</SectionLabel>
       <div className="mj-grid4">
-        {quickActions.map((q) => (
-          <button key={q.label} type="button" className="mj-quicktile tap" onClick={() => navigate(q.target)}>
-            <span className="mj-quickicon">
-              <Ic name={q.icon} size={20} color="#fff" />
-            </span>
-            <span className="mj-quicklabel">{q.label}</span>
-          </button>
-        ))}
+        {quickActions.map((q) => {
+          // Once the refill is scheduled there is nothing left to schedule —
+          // the tile goes to the order instead of replaying the flow.
+          const target = q.target === "refill" && s.refill.scheduled ? "orders" : q.target;
+          return (
+            <button key={q.label} type="button" className="mj-quicktile tap" onClick={() => navigate(target)}>
+              <span className="mj-quickicon">
+                <Ic name={q.icon} size={20} color="#fff" />
+              </span>
+              <span className="mj-quicklabel">{q.label}</span>
+            </button>
+          );
+        })}
       </div>
       {openCount === 0 && (
         <div className="mj-alldone">
@@ -213,7 +218,7 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
       </div>
       <div className="mj-timeline">
         <TLItem state="past" icon="package-check" date={cal.delivered1038} title="Shipment delivered" sub="Order #1038 · signed by M. Torres" />
-        <TLItem state="past" icon="syringe" date={cal.dose6} title="Dose 6 taken" sub="Logged on time · streak: 6" />
+        <TLItem state="past" icon="syringe" date={cal.dose13} title="Dose 13 taken" sub="Logged on time · 12 of 13 on time" />
         {s.tasks.checkin && (
           <TLItem state="past" icon="clipboard-check" date={"Today, " + cal.todayShort} title="MS Symptom Check-In sent" sub="Shared with your care team" />
         )}
@@ -223,7 +228,7 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
             icon="calendar-clock"
             date={"Today, " + cal.todayShort}
             title="Refill window open"
-            sub={"Schedule your next shipment by " + cal.scheduleByShort + "."}
+            sub={"Schedule your next shipment by " + cal.scheduleBy + "."}
             cta="Schedule refill"
             onCta={() => navigate("refill")}
           />
@@ -244,13 +249,13 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
             icon="clipboard-list"
             date={"Due " + cal.checkinDue}
             title="MS Symptom Check-In"
-            sub="3 minutes · shared with your care team"
+            sub="3 min · shared with your care team"
             cta="Start check-in"
             onCta={() => navigate("checkin")}
           />
         )}
         <TLItem state="next" icon="syringe" date={cal.nextDose} title="Next dose due" sub="A reminder will arrive that morning." />
-        <TLItem state="next" icon="flask-conical" date={cal.labWork} title="Quarterly lab work" sub="Order will be sent to your lab." />
+        <TLItem state="next" icon="flask-conical" date={cal.labWork} title="Six-month lab work" sub="Order will be sent to your lab." />
       </div>
     </div>
   );

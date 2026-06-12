@@ -12,6 +12,9 @@ const questions = [
   { q: "Overall, how confident do you feel about your treatment right now?", opts: ["Very", "Mostly", "Unsure", "Struggling"] },
 ];
 
+/* Answers that warrant outreach rather than a passive acknowledgment. */
+const concerning = new Set(["Much worse", "Noticeable changes", "Swelling", "Pain", "Struggling"]);
+
 /* Four questions, one tap each; answers land in the store on the last tap. */
 export function CheckinFlow({ navigate }: { navigate: Navigate }) {
   const [idx, setIdx] = useState(0);
@@ -72,8 +75,9 @@ export function CheckinFlow({ navigate }: { navigate: Navigate }) {
               Check-in sent
             </h2>
             <p className="mj-successsub">
-              Shared with your care team. Sam, PharmD reviews every check-in and will reach out if anything needs
-              attention.
+              {answers.some((a) => concerning.has(a))
+                ? "Shared with your care team. Some of your answers need a closer look — Sam, PharmD will call you today."
+                : "Shared with your care team. Sam, PharmD reviews every check-in and will reach out if anything needs attention."}
             </p>
             <PillBtn onClick={() => navigate("home")} style={{ width: "100%" }}>
               Back to home

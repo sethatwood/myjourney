@@ -15,7 +15,7 @@ export function CopaySheet({ onClose }: { onClose: () => void }) {
           <div>
             <h3 className="mj-sheettitle">Renew co-pay assistance</h3>
             <p className="mj-sheetsub">
-              Your manufacturer co-pay program covers <strong>$240/month</strong>. It expires {cal.copayExpires} —
+              Your manufacturer co-pay program covers <strong>$240 per fill</strong>. It expires {cal.copayExpires} —
               renew now and your co-pay stays <strong>$0</strong> for the next 12 months.
             </p>
             <div className="mj-reviewcard" style={{ marginBottom: 18 }}>

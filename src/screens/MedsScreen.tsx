@@ -10,10 +10,10 @@ import { SectionLabel } from "../components/SectionLabel";
 export function MedsScreen({ navigate, onInfo, onBell }: { navigate: Navigate; onInfo: () => void; onBell: () => void }) {
   const s = useMJ();
   const doseHistory: [string, string, string][] = [
-    ["Dose 6", cal.dose6, "On time"],
-    ["Dose 5", cal.dose5, "On time"],
-    ["Dose 4", cal.dose4, "1 day late"],
-    ["Dose 3", cal.dose3, "On time"],
+    ["Dose 13", cal.dose13, "On time"],
+    ["Dose 12", cal.dose12, "On time"],
+    ["Dose 11", cal.dose11, "On time"],
+    ["Dose 10", cal.dose10, "1 day late"],
   ];
   return (
     <div className="mj-screen">
@@ -26,7 +26,7 @@ export function MedsScreen({ navigate, onInfo, onBell }: { navigate: Navigate; o
             <div>
               <p className="mj-medeyebrow">Specialty therapy</p>
               <h2 className="mj-medname">Velmira 20&nbsp;mg</h2>
-              <p className="mj-medsub">Autoinjector &middot; every 4 weeks</p>
+              <p className="mj-medsub">Autoinjector &middot; every 2 weeks</p>
               <div className="mj-nextdose">
                 <Ic name="syringe" size={15} color="var(--oj-blue)" />
                 <span>

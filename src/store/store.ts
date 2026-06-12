@@ -14,7 +14,7 @@ export interface Message {
 
 export interface MJState {
   homeMode: HomeMode;
-  tasks: { checkin: boolean; video: boolean; copay: boolean };
+  tasks: { checkin: boolean; copay: boolean };
   refill: { scheduled: boolean; deliveryLabel: string | null };
   checkinAnswers: string[] | null;
   messages: Message[];
@@ -27,7 +27,7 @@ const KEY = "mj-state-v1";
 function defaults(): MJState {
   return {
     homeMode: "action",
-    tasks: { checkin: false, video: false, copay: false },
+    tasks: { checkin: false, copay: false },
     refill: { scheduled: false, deliveryLabel: null },
     checkinAnswers: null,
     aboutSeen: false,
@@ -40,12 +40,12 @@ function defaults(): MJState {
       {
         from: "me",
         text: "Thanks Sam! The new autoinjector cap was easier this time.",
-        time: shortLabel(-7),
+        time: shortLabel(-6),
       },
       {
         from: "pharm",
         text: "Great to hear. Small tip: letting it sit at room temp for 15–20 min makes it even smoother.",
-        time: shortLabel(-7),
+        time: shortLabel(-6),
       },
     ],
   };

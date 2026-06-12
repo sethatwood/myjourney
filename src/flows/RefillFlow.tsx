@@ -34,7 +34,7 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
               <p className="mj-medeyebrow">Specialty therapy</p>
               <h2 className="mj-medname">Velmira 20&nbsp;mg</h2>
               <p className="mj-medsub" style={{ marginBottom: 0 }}>
-                Autoinjector &middot; 1 device &middot; 28-day supply &middot; Rx #884-2210
+                Autoinjector &middot; 1 device &middot; 14-day supply &middot; Rx #884-2210
               </p>
             </div>
             <div className="mj-smartbox">
@@ -45,7 +45,7 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
                 <p className="mj-smarttitle">Smart scheduling</p>
                 <p className="mj-smartsub">
                   Your next dose is <strong>{cal.nextDose}</strong>. Based on your dose calendar and carrier transit
-                  times, we recommend delivery by <strong>{cal.scheduleBy}</strong>.
+                  times, we recommend delivery by <strong>{cal.deliverBy}</strong>.
                 </p>
               </div>
             </div>
@@ -80,9 +80,6 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
                 <p className="mj-tasktitle">Home</p>
                 <p className="mj-tasksub">214 Bellweather Ln, Apt 3 &middot; signature required</p>
               </div>
-              <a className="mj-seeall" href="#" onClick={(e) => e.preventDefault()}>
-                Change
-              </a>
             </div>
             <div className="mj-coldnote">
               <Ic name="thermometer-snowflake" size={16} color="var(--oj-blue-deep)" />
@@ -100,7 +97,7 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
             <div className="mj-reviewcard">
               {[
                 ["Medication", "Velmira 20 mg autoinjector"],
-                ["Supply", "1 device · 28 days"],
+                ["Supply", "1 device · 14 days"],
                 ["Delivery", date + " · Home"],
                 ["Prescriber", "Dr. A. Chen, Neurology"],
               ].map(([key, val]) => (
