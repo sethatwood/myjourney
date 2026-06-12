@@ -19,6 +19,13 @@ test.beforeEach(async ({ page }) => {
     if (msg.type() === "error") consoleErrors.push(msg.text());
   });
   page.on("pageerror", (err) => consoleErrors.push(String(err)));
+  // Skip the first-visit About introduction (covered by about.spec.ts) —
+  // but only when no state exists yet, so persistence tests keep theirs.
+  await page.addInitScript(() => {
+    if (!localStorage.getItem("mj-state-v1")) {
+      localStorage.setItem("mj-state-v1", JSON.stringify({ aboutSeen: true }));
+    }
+  });
   await page.goto("/");
 });
 
@@ -140,6 +147,7 @@ test("reset demo data restores the initial scenario", async ({ page }) => {
   await page.getByRole("button", { name: "About this prototype" }).click();
   await expect(page.getByText("Built by Seth Atwood")).toBeVisible();
   await page.getByRole("button", { name: "Reset demo data" }).click();
+  await expect(page.locator(".mj-toast")).toContainText("Demo data reset");
   await expect(page.locator(".mj-hero-blue")).toContainText("ready to schedule");
   await expect(page.locator(".mj-bell-dot")).toHaveCount(1);
   await expect(page.locator(".mj-greet-sub")).toContainText("3 things");

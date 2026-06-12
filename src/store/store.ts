@@ -18,6 +18,8 @@ export interface MJState {
   refill: { scheduled: boolean; deliveryLabel: string | null };
   checkinAnswers: string[] | null;
   messages: Message[];
+  /** The About overlay introduces the prototype once per fresh profile. */
+  aboutSeen: boolean;
 }
 
 const KEY = "mj-state-v1";
@@ -28,6 +30,7 @@ function defaults(): MJState {
     tasks: { checkin: false, video: false, copay: false },
     refill: { scheduled: false, deliveryLabel: null },
     checkinAnswers: null,
+    aboutSeen: false,
     messages: [
       {
         from: "pharm",

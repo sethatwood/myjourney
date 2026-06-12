@@ -26,6 +26,7 @@ import {
   ThermometerSnowflake,
   Truck,
   UserRound,
+  X,
 } from "lucide-react";
 
 const icons = {
@@ -55,6 +56,7 @@ const icons = {
   "thermometer-snowflake": ThermometerSnowflake,
   truck: Truck,
   "user-round": UserRound,
+  x: X,
 } as const;
 
 export type IconName = keyof typeof icons;

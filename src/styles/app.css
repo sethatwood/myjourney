@@ -206,3 +206,13 @@ button { font-family: inherit; }
   .mj-progress-fill, .mj-mode, .mj-taskcard.tap, .mj-quicktile, .mj-datecard, .mj-optcard { transition: none; }
   .mj-taskcard.tap:hover, .mj-quicktile:hover { transform: none; }
 }
+
+/* Sheet close + toast */
+.mj-sheet { position: relative; }
+.mj-sheetclose { position: absolute; top: 14px; right: 14px; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #f2f6f9; border: none; border-radius: 50%; cursor: pointer; }
+.mj-sheetclose:hover { background: #e6edf2; }
+.mj-toast { position: absolute; left: 50%; bottom: 86px; z-index: 60; display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: var(--oj-navy); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; border-radius: 99px; box-shadow: 0 6px 18px rgba(20, 54, 82, 0.3); transform: translateX(-50%); animation: mj-toast-in 0.25s var(--oj-ease-out); }
+@keyframes mj-toast-in { from { opacity: 0; transform: translate(-50%, 8px); } to { opacity: 1; transform: translate(-50%, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .mj-toast { animation: none; }
+}

@@ -13,7 +13,15 @@ describe("store", () => {
     expect(s.refill).to.deep.equal({ scheduled: false, deliveryLabel: null });
     expect(s.checkinAnswers).to.equal(null);
     expect(s.messages).to.have.length(3);
+    expect(s.aboutSeen).to.equal(false);
     expect(openTaskCount(s)).to.equal(3);
+  });
+
+  it("reset clears the about-seen flag for a fresh first visit", () => {
+    store.set({ aboutSeen: true });
+    store.reset();
+    expect(store.get().aboutSeen).to.equal(false);
+    expect(localStorage.getItem(KEY)).to.equal(null);
   });
 
   it("applies object patches and persists them", () => {

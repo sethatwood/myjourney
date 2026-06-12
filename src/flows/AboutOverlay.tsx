@@ -1,11 +1,15 @@
-import { store } from "../store/store";
+import { Ic } from "../components/Ic";
 
-/* The meta-narrative: what this is, what's real, how it would ship. */
-export function AboutOverlay({ onClose }: { onClose: () => void }) {
+/* The meta-narrative: what this is, what's real, how it would ship.
+   Opens automatically on a first visit; closes via the X or the backdrop. */
+export function AboutOverlay({ onClose, onReset }: { onClose: () => void; onReset: () => void }) {
   return (
     <div className="mj-sheetwrap" onClick={onClose}>
       <div className="mj-sheet tall" onClick={(e) => e.stopPropagation()}>
         <div className="mj-sheethandle" />
+        <button type="button" className="mj-sheetclose" onClick={onClose} aria-label="Close">
+          <Ic name="x" size={18} color="var(--oj-navy)" />
+        </button>
         <h3 className="mj-sheettitle">About this prototype</h3>
         <div className="mj-about">
           <p>
@@ -33,14 +37,7 @@ export function AboutOverlay({ onClose }: { onClose: () => void }) {
             Built by Seth Atwood on the ONE Journey design language &middot; reset demo data below.
           </p>
         </div>
-        <button
-          type="button"
-          className="mj-ghostbtn"
-          onClick={() => {
-            store.reset();
-            onClose();
-          }}
-        >
+        <button type="button" className="mj-ghostbtn" onClick={onReset}>
           Reset demo data
         </button>
       </div>

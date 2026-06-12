@@ -9,6 +9,9 @@ test("capture README screenshots", async ({ page, isMobile }) => {
   test.skip(isMobile, "desktop captures only; mobile is covered below");
   const device = page.locator(".mj-device");
 
+  await page.addInitScript(() => {
+    localStorage.setItem("mj-state-v1", JSON.stringify({ aboutSeen: true }));
+  });
   await page.goto("/");
   await device.screenshot({ path: "docs/home-action.png" });
 
@@ -45,6 +48,9 @@ test("capture mobile screenshot", async ({ browser, baseURL }) => {
     hasTouch: true,
   });
   const mobile = await ctx.newPage();
+  await mobile.addInitScript(() => {
+    localStorage.setItem("mj-state-v1", JSON.stringify({ aboutSeen: true }));
+  });
   await mobile.goto(baseURL ?? "http://localhost:4173/");
   await mobile.locator(".mj-greet").waitFor();
   await mobile.waitForTimeout(400);
