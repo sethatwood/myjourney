@@ -212,8 +212,8 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
         </span>
       </div>
       <div className="mj-timeline">
-        <TLItem state="past" icon="syringe" date={cal.dose6} title="Dose 6 taken" sub="Logged on time · streak: 6" />
         <TLItem state="past" icon="package-check" date={cal.delivered1038} title="Shipment delivered" sub="Order #1038 · signed by M. Torres" />
+        <TLItem state="past" icon="syringe" date={cal.dose6} title="Dose 6 taken" sub="Logged on time · streak: 6" />
         {s.tasks.checkin && (
           <TLItem state="past" icon="clipboard-check" date={"Today, " + cal.todayShort} title="MS Symptom Check-In sent" sub="Shared with your care team" />
         )}
@@ -231,9 +231,9 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
           <TLItem
             state="now"
             icon="package"
-            date={"Arrives " + s.refill.deliveryLabel}
+            date={"Today, " + cal.todayShort}
             title="Shipment scheduled"
-            sub="Order #1043 · temperature-controlled"
+            sub={"Order #1043 · arrives " + s.refill.deliveryLabel}
             cta="View order"
             onCta={() => navigate("orders")}
           />

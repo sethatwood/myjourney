@@ -75,6 +75,16 @@ test("journey mode shows the timeline and the preference persists", async ({ pag
   await page.getByRole("tab", { name: "Journey" }).click();
   await expect(page.locator(".mj-tl-item")).toHaveCount(6);
   await expect(page.locator(".mj-tl-item.now")).toContainText("Refill window open");
+  // Strict chronological order, top to bottom.
+  const titles = await page.locator(".mj-tl-title").allInnerTexts();
+  expect(titles).toEqual([
+    "Shipment delivered",
+    "Dose 6 taken",
+    "Refill window open",
+    "MS Symptom Check-In",
+    "Next dose due",
+    "Quarterly lab work",
+  ]);
   await page.reload();
   await expect(page.getByRole("tab", { name: "Journey" })).toHaveAttribute("aria-selected", "true");
 });
@@ -90,6 +100,10 @@ test("refill flow completes and propagates to orders, hero, and timeline", async
   await expect(page.locator(".mj-hero-navy")).toContainText("Next shipment arrives");
   await page.getByRole("tab", { name: "Journey" }).click();
   await expect(page.locator(".mj-tl-item.now")).toContainText("Shipment scheduled");
+  // The scheduled card is a today event; the arrival date is detail, so
+  // the rail stays chronological with the check-in due date below it.
+  await expect(page.locator(".mj-tl-item.now .mj-tl-date")).toContainText("Today");
+  await expect(page.locator(".mj-tl-item.now")).toContainText("arrives");
 });
 
 test("refill defaults to the recommended delivery day", async ({ page }) => {
