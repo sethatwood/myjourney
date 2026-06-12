@@ -1,0 +1,28 @@
+/* ONE Journey spacing & layout tokens — values from site CSS. */
+:root {
+  /* Layout */
+  --oj-wrapper-max: 1160px;       /* content column */
+  --oj-wrapper-max-wide: 1400px;  /* small-spacing band */
+  --oj-wrapper-pad: 40px;         /* 20px on mobile */
+  --oj-section-pad: 120px;        /* content-block vertical */
+  --oj-section-pad-sm: 56px;      /* small-spacing band */
+  --oj-section-pad-cta: 200px;    /* big blue CTA block + hero */
+
+  /* Component spacing */
+  --oj-space-1: 5px;
+  --oj-space-2: 10px;
+  --oj-space-3: 16px;
+  --oj-space-4: 20px;
+  --oj-space-5: 24px;
+  --oj-space-6: 32px;
+  --oj-space-7: 40px;
+  --oj-space-8: 48px;
+  --oj-space-9: 64px;
+
+  /* Corner radii */
+  --oj-radius-pill: 40px;   /* buttons (50px on tab pills — same effect) */
+  --oj-radius-card: 18px;   /* feature cards */
+  --oj-radius-box: 16px;    /* content boxes, overlay panel */
+  --oj-radius-input: 10px;  /* overlay form fields */
+  --oj-radius-tiny: 2px;    /* inline form fields */
+}

@@ -1,0 +1,54 @@
+/* ONE Journey typography tokens — scale lifted verbatim from site CSS.
+   One family (Inter variable), weights 400 / 500 / 600 / 700. */
+:root {
+  --oj-font-sans: "Inter", Arial, Helvetica, sans-serif;
+
+  /* Display / headings */
+  --oj-text-display-size: 77px;   /* big CTA headline on blue */
+  --oj-text-display-line: 84px;
+  --oj-text-display-tracking: -2.4px;
+  --oj-text-h1-size: 68px;        /* hero headline */
+  --oj-text-h1-line: 72px;
+  --oj-text-h1-tracking: -1.26px;
+  --oj-text-h2-cta-size: 56px;    /* light CTA headline */
+  --oj-text-h2-cta-line: 61px;
+  --oj-text-h2-size: 40px;        /* section heading */
+  --oj-text-h2-line: 48px;
+  --oj-text-h2-tracking: -0.8px;
+  --oj-text-stat-size: 44px;      /* stat figure */
+  --oj-text-stat-line: 44px;
+  --oj-text-h4-box-size: 35px;    /* content-box heading */
+  --oj-text-h4-box-line: 42px;
+  --oj-text-h3-modal-size: 32px;  /* overlay panel heading */
+  --oj-text-h3-modal-line: 38px;
+
+  /* Eyebrow (h6) */
+  --oj-text-eyebrow-size: 12px;
+  --oj-text-eyebrow-line: 19px;
+  --oj-text-eyebrow-tracking: 1.44px;
+
+  /* Body */
+  --oj-text-lead-size: 27px;      /* lead paragraph on blue CTA */
+  --oj-text-lead-line: 36px;
+  --oj-text-quote-size: 22px;     /* testimonial quote, italic */
+  --oj-text-quote-line: 30px;
+  --oj-text-dt-size: 20px;        /* definition-list term */
+  --oj-text-dt-line: 32px;
+  --oj-text-body-size: 17px;      /* default paragraph */
+  --oj-text-body-line: 28px;
+  --oj-text-ui-size: 16px;        /* buttons, nav, inputs, dd */
+  --oj-text-ui-line: 24px;
+  --oj-text-small-size: 14px;     /* stat labels, footer, card body */
+  --oj-text-small-line: 22px;
+  --oj-text-caption-size: 13px;   /* form labels, cite, card bullets */
+  --oj-text-caption-line: 18px;
+  --oj-text-tag-size: 12px;       /* result-list chips */
+  --oj-text-tag-line: 19px;
+  --oj-text-tag-tracking: 0.48px;
+
+  /* Weights */
+  --oj-weight-regular: 400;
+  --oj-weight-medium: 500;
+  --oj-weight-semibold: 600;
+  --oj-weight-bold: 700;
+}

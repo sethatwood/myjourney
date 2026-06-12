@@ -1,0 +1,36 @@
+/* ONE Journey color tokens — values lifted verbatim from
+   onejourneybycassian.com main.css */
+:root {
+  /* Base palette */
+  --oj-blue: #42b0ff;        /* Journey Blue — hero bg, accents, icon circles */
+  --oj-blue-mid: #248dc9;    /* animated hero bars */
+  --oj-blue-deep: #215a85;   /* lead paragraph on blue CTA */
+  --oj-navy: #143652;        /* Deep Navy — buttons, footer, body text */
+  --oj-navy-2: #1c4368;      /* headings on blue, hero bars */
+  --oj-blue-tint: #e4f1fb;   /* tinted info box */
+  --oj-ink: #111;            /* headings on light */
+  --oj-gray: #888;           /* secondary text, eyebrows, card body */
+  --oj-border: #ccc;         /* hairlines, dividers, tab pills */
+  --oj-bg-gray: #f5f5f5;     /* grey section band, light box */
+  --oj-bg-form: #f9fbfd;     /* input fill */
+  --oj-border-form: #d8e2ea; /* input border */
+  --oj-white: #fff;
+
+  /* Semantic aliases */
+  --oj-text-body: var(--oj-navy);
+  --oj-text-secondary: var(--oj-gray);
+  --oj-text-heading: var(--oj-ink);
+  --oj-text-on-dark: var(--oj-white);
+  --oj-text-eyebrow: var(--oj-gray);
+  --oj-accent: var(--oj-blue);
+  --oj-surface-page: var(--oj-white);
+  --oj-surface-section: var(--oj-bg-gray);
+  --oj-surface-card: var(--oj-white);
+  --oj-surface-box-tint: var(--oj-blue-tint);
+  --oj-surface-box-dark: var(--oj-navy);
+  --oj-surface-hero: var(--oj-blue);
+  --oj-surface-footer: var(--oj-navy);
+  --oj-text-footer: hsla(0, 0%, 100%, 0.4);
+  --oj-scrim: rgba(17, 17, 17, 0.65);
+  --oj-focus: var(--oj-blue);
+}

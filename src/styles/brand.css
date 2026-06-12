@@ -1,0 +1,398 @@
+/* ONE Journey brand classes — faithful, namespaced ports of the
+   component CSS on onejourneybycassian.com (theme: onejourney-wp). */
+
+/* ---------- Base ---------- */
+.oj-root,
+.oj-root body {
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-regular);
+  background-color: var(--oj-surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.oj-wrapper {
+  max-width: var(--oj-wrapper-max);
+  margin: 0 auto;
+  padding: 0 var(--oj-wrapper-pad);
+  box-sizing: border-box;
+}
+
+/* ---------- Type ---------- */
+.oj-h1 {
+  margin: 0 0 20px;
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-bold);
+  font-size: var(--oj-text-h1-size);
+  line-height: var(--oj-text-h1-line);
+  letter-spacing: var(--oj-text-h1-tracking);
+  color: var(--oj-white);
+}
+.oj-h2 {
+  margin: 0 0 20px;
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-bold);
+  font-size: var(--oj-text-h2-size);
+  line-height: var(--oj-text-h2-line);
+  letter-spacing: var(--oj-text-h2-tracking);
+  color: var(--oj-ink);
+}
+.oj-display {
+  margin: 0 0 40px;
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-bold);
+  font-size: var(--oj-text-display-size);
+  line-height: var(--oj-text-display-line);
+  letter-spacing: var(--oj-text-display-tracking);
+  color: var(--oj-navy-2);
+}
+.oj-eyebrow {
+  display: block;
+  margin: 0 0 20px;
+  font-family: var(--oj-font-sans);
+  font-weight: var(--oj-weight-semibold);
+  font-size: var(--oj-text-eyebrow-size);
+  line-height: var(--oj-text-eyebrow-line);
+  letter-spacing: var(--oj-text-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--oj-text-eyebrow);
+}
+.oj-body {
+  margin: 0 0 20px;
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-body-size);
+  line-height: var(--oj-text-body-line);
+  color: var(--oj-text-body);
+}
+.oj-lead {
+  font-family: var(--oj-font-sans);
+  font-size: var(--oj-text-lead-size);
+  line-height: var(--oj-text-lead-line);
+  font-weight: var(--oj-weight-medium);
+  color: var(--oj-blue-deep);
+}
+
+/* ---------- Button ---------- */
+/* Pill button with sweeping fill on hover. Default: navy on light. */
+.oj-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 36px;
+  font-family: var(--oj-font-sans);
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: var(--oj-weight-semibold);
+  text-decoration: none;
+  text-align: center;
+  color: var(--oj-white);
+  background-color: var(--oj-navy);
+  border: none;
+  border-radius: var(--oj-radius-pill);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color var(--oj-dur-fast) ease;
+}
+.oj-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform: translateX(-110%);
+  pointer-events: none;
+  background: var(--oj-white);
+  transition: transform var(--oj-dur-sweep) var(--oj-ease-out);
+}
+.oj-btn .oj-btn-text { position: relative; z-index: 2; }
+.oj-btn:hover { color: var(--oj-blue); }
+.oj-btn:hover::before { transform: translateX(0); }
+.oj-btn:active { color: var(--oj-navy); }
+
+.oj-btn.white { color: var(--oj-blue); background-color: var(--oj-white); }
+.oj-btn.white::before { background: var(--oj-navy); }
+.oj-btn.white:hover { color: var(--oj-white); }
+
+.oj-btn.blue { background-color: var(--oj-blue); }
+.oj-btn.blue::before { background: var(--oj-navy); }
+.oj-btn.blue:hover { color: var(--oj-white); }
+
+.oj-btn.dark-alt::before { background-color: var(--oj-blue); }
+.oj-btn.dark-alt:hover { color: var(--oj-white); }
+
+/* ---------- Feature card ---------- */
+.oj-card {
+  padding: 32px;
+  background: var(--oj-surface-card);
+  border-radius: var(--oj-radius-card);
+  box-shadow: var(--oj-shadow-card);
+  box-sizing: border-box;
+}
+.oj-card .oj-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 0 24px;
+  background-color: var(--oj-blue);
+  border-radius: 50%;
+}
+.oj-card h4,
+.oj-card .oj-card-title {
+  margin: 0 0 10px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: var(--oj-weight-bold);
+  color: var(--oj-navy-2);
+}
+.oj-card p,
+.oj-card .oj-card-body {
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--oj-gray);
+}
+
+/* Square-bullet list (inside cards) */
+.oj-bullet-list { margin: 0; padding: 0; list-style: none; }
+.oj-bullet-list li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--oj-gray);
+}
+.oj-bullet-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 4px;
+  height: 4px;
+  background-color: var(--oj-blue);
+}
+/* Round-bullet variant (results strip) */
+.oj-bullet-list.dots li { font-size: 14px; line-height: normal; margin-bottom: 0; }
+.oj-bullet-list.dots li::before { top: 6px; border-radius: 50%; }
+
+/* Chip strip (results band) */
+.oj-chip {
+  padding: 6px 12px;
+  font-size: var(--oj-text-tag-size);
+  font-weight: var(--oj-weight-semibold);
+  line-height: var(--oj-text-tag-line);
+  letter-spacing: var(--oj-text-tag-tracking);
+  color: var(--oj-ink);
+  white-space: nowrap;
+  border-left: var(--oj-border) solid 1px;
+}
+.oj-chip:first-child { border-left: none; }
+
+/* ---------- Content box ---------- */
+.oj-box {
+  padding: 32px;
+  background-color: var(--oj-surface-box-tint);
+  border-radius: var(--oj-radius-box);
+  box-sizing: border-box;
+}
+.oj-box p { margin: 0 0 12px; font-size: 15px; line-height: 25px; color: var(--oj-blue); }
+.oj-box p strong { color: var(--oj-navy); font-weight: var(--oj-weight-bold); }
+.oj-box h4 {
+  margin: 0 0 24px;
+  font-weight: var(--oj-weight-bold);
+  font-size: var(--oj-text-h4-box-size);
+  line-height: var(--oj-text-h4-box-line);
+  color: var(--oj-white);
+}
+.oj-box h4:last-child { margin-bottom: 0; }
+.oj-box h4 strong { color: var(--oj-blue); }
+.oj-box.dark { background-color: var(--oj-surface-box-dark); }
+.oj-box.dark p { color: var(--oj-white); }
+.oj-box.dark p strong { color: var(--oj-blue); }
+.oj-box.light { background-color: var(--oj-bg-gray); }
+.oj-box.light h4 { color: var(--oj-navy); }
+.oj-box.centered { text-align: center; }
+
+/* Testimonial quote (inside light box) */
+.oj-quote { margin: 0; text-align: center; }
+.oj-quote p {
+  margin: 0 0 12px;
+  font-size: var(--oj-text-quote-size);
+  line-height: var(--oj-text-quote-line);
+  font-style: italic;
+  color: var(--oj-ink);
+}
+.oj-quote cite {
+  font-size: 13px;
+  line-height: 20px;
+  font-style: normal;
+  color: var(--oj-gray);
+  font-weight: var(--oj-weight-semibold);
+}
+
+/* ---------- Stats ---------- */
+.oj-stats { display: flex; align-items: center; justify-content: center; }
+.oj-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: 20px 40px;
+  border-left: var(--oj-border) solid 1px;
+}
+.oj-stat:first-child { border-left: none; }
+.oj-stat .oj-stat-value {
+  margin: 0 0 10px;
+  font-size: var(--oj-text-stat-size);
+  line-height: var(--oj-text-stat-line);
+  font-weight: var(--oj-weight-bold);
+  color: var(--oj-navy);
+}
+.oj-stat .oj-stat-label {
+  margin: 0;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--oj-gray);
+  text-align: center;
+}
+
+/* ---------- Tab pills ---------- */
+.oj-tab-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.oj-tab-nav li { font-size: 20px; line-height: 22px; font-weight: var(--oj-weight-medium); cursor: pointer; }
+.oj-tab-nav li a,
+.oj-tab-nav li button {
+  display: block;
+  padding: 17px 47px;
+  font: inherit;
+  color: var(--oj-gray);
+  background: none;
+  cursor: pointer;
+  text-decoration: none;
+  border: var(--oj-border) solid 1px;
+  border-radius: 50px;
+  transition: color var(--oj-dur-fast) ease, background-color var(--oj-dur-fast) ease, border-color var(--oj-dur-fast) ease;
+}
+.oj-tab-nav li.active a,
+.oj-tab-nav li.active button {
+  color: var(--oj-white);
+  background-color: var(--oj-navy);
+  border-color: var(--oj-navy);
+}
+
+/* ---------- Forms (overlay style) ---------- */
+.oj-label {
+  display: block;
+  margin: 0 0 8px;
+  font-size: 13px;
+  line-height: 18px;
+  font-weight: var(--oj-weight-semibold);
+  color: var(--oj-navy);
+}
+.oj-input,
+.oj-textarea,
+.oj-select {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-family: var(--oj-font-sans);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--oj-navy);
+  background-color: var(--oj-bg-form);
+  border: var(--oj-border-form) solid 1px;
+  border-radius: var(--oj-radius-input);
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+  appearance: none;
+}
+.oj-input:focus, .oj-textarea:focus, .oj-select:focus { border-color: var(--oj-focus); outline: none; }
+.oj-textarea { resize: vertical; min-height: 110px; }
+.oj-input::placeholder, .oj-textarea::placeholder { color: var(--oj-gray); }
+/* Inline (in-page) form variant */
+.oj-input.inline, .oj-select.inline {
+  padding: 15px 20px;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: var(--oj-white);
+  border: 1px solid rgba(20, 54, 82, 0.4);
+  border-radius: var(--oj-radius-tiny);
+}
+.oj-input.inline:focus, .oj-select.inline:focus { border-color: var(--oj-focus); }
+
+/* ---------- Scroll reveals ---------- */
+.oj-reveal-fade-up,
+.oj-reveal-from-left {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: transform var(--oj-dur-reveal) var(--oj-ease-out), opacity var(--oj-dur-reveal) ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.oj-reveal-fade-up { transform: translateY(18px); }
+.oj-reveal-from-left { transform: translateX(-26px); }
+.oj-reveal-fade-up.in-view,
+.oj-reveal-from-left.in-view { opacity: 1; transform: translate(0, 0); }
+@media (prefers-reduced-motion: reduce) {
+  .oj-reveal-fade-up, .oj-reveal-from-left {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Hero entrance (staggered, used on hero text) */
+@keyframes oj-hero-text-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes oj-center-in {
+  from { opacity: 0; transform: scale(0.15); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes oj-orbit-in {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes oj-hero-node-1 { from { opacity: 0; transform: translate(-120px, 90px); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes oj-hero-node-2 { from { opacity: 0; transform: translate(-145px, -20px); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes oj-hero-node-3 { from { opacity: 0; transform: translateY(-175px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes oj-hero-node-4 { from { opacity: 0; transform: translate(135px, -25px); } to { opacity: 1; transform: translate(0, 0); } }
+@keyframes oj-hero-node-5 { from { opacity: 0; transform: translate(118px, 85px); } to { opacity: 1; transform: translate(0, 0); } }
+
+/* Header nav link: white, 1px underline scales in from the left */
+.oj-nav-link {
+  position: relative;
+  color: var(--oj-white);
+  text-decoration: none;
+  font-family: var(--oj-font-sans);
+}
+.oj-nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--oj-white);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+.oj-nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* Decorative bar drift (hero + quote backdrops) */
+@keyframes oj-col-up { from { transform: translateY(0); } to { transform: translateY(-240%); } }
+@keyframes oj-col-down { from { transform: translateY(0); } to { transform: translateY(240%); } }
+@keyframes oj-quote-col-up { from { transform: translateY(0); } to { transform: translateY(-100%); } }
+@keyframes oj-quote-col-down { from { transform: translateY(0); } to { transform: translateY(100%); } }
