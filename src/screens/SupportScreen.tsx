@@ -5,7 +5,7 @@ import { AppBar } from "../components/AppBar";
 import { BottomNav } from "../components/BottomNav";
 import { Ic } from "../components/Ic";
 
-export function SupportScreen({ navigate, onInfo }: { navigate: Navigate; onInfo: () => void }) {
+export function SupportScreen({ navigate, onInfo, onBell }: { navigate: Navigate; onInfo: () => void; onBell: () => void }) {
   const s = useMJ();
   const [draft, setDraft] = useState("");
   const threadRef = useRef<HTMLDivElement>(null);
@@ -37,7 +37,7 @@ export function SupportScreen({ navigate, onInfo }: { navigate: Navigate; onInfo
 
   return (
     <div className="mj-screen">
-      <AppBar onInfo={onInfo} />
+      <AppBar onInfo={onInfo} onBell={onBell} />
       <div className="mj-supporthead">
         <span className="mj-pharmavatar lg">
           <Ic name="user-round" size={22} color="#fff" />

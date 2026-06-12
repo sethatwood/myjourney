@@ -10,10 +10,12 @@ import { RefillFlow } from "./flows/RefillFlow";
 import { CheckinFlow } from "./flows/CheckinFlow";
 import { CopaySheet } from "./flows/CopaySheet";
 import { AboutOverlay } from "./flows/AboutOverlay";
+import { NotificationsSheet } from "./flows/NotificationsSheet";
 
 export default function App() {
   const [route, setRoute] = useState<Route>("home");
   const [showCopay, setShowCopay] = useState(false);
+  const [showNotifs, setShowNotifs] = useState(false);
   // The About overlay is the demo's introduction: open it on first visit.
   const [showAbout, setShowAbout] = useState(() => !store.get().aboutSeen);
   const [toast, setToast] = useState<string | null>(null);
@@ -34,6 +36,12 @@ export default function App() {
   }
 
   const onInfo = () => setShowAbout(true);
+  const onBell = () => setShowNotifs(true);
+
+  function openFromNotifs(target: NavTarget) {
+    setShowNotifs(false);
+    navigate(target);
+  }
 
   function closeAbout() {
     store.set({ aboutSeen: true });
@@ -52,13 +60,14 @@ export default function App() {
     <div className="mj-frame">
       {/* key remounts the screen per route: scroll resets and the fade-in replays */}
       <div className="mj-device" key={route}>
-        {route === "home" && <HomeScreen navigate={navigate} onInfo={onInfo} />}
+        {route === "home" && <HomeScreen navigate={navigate} onInfo={onInfo} onBell={onBell} />}
         {route === "refill" && <RefillFlow navigate={navigate} />}
         {route === "checkin" && <CheckinFlow navigate={navigate} />}
-        {route === "meds" && <MedsScreen navigate={navigate} onInfo={onInfo} />}
-        {route === "orders" && <OrdersScreen navigate={navigate} onInfo={onInfo} />}
-        {route === "support" && <SupportScreen navigate={navigate} onInfo={onInfo} />}
+        {route === "meds" && <MedsScreen navigate={navigate} onInfo={onInfo} onBell={onBell} />}
+        {route === "orders" && <OrdersScreen navigate={navigate} onInfo={onInfo} onBell={onBell} />}
+        {route === "support" && <SupportScreen navigate={navigate} onInfo={onInfo} onBell={onBell} />}
         {showCopay && <CopaySheet onClose={() => setShowCopay(false)} />}
+        {showNotifs && <NotificationsSheet onClose={() => setShowNotifs(false)} onOpen={openFromNotifs} />}
         {showAbout && <AboutOverlay onClose={closeAbout} onReset={resetDemo} />}
         {toast && (
           <div className="mj-toast" role="status">

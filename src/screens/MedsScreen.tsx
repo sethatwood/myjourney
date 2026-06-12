@@ -7,7 +7,7 @@ import { Ic } from "../components/Ic";
 import { Ring } from "../components/Ring";
 import { SectionLabel } from "../components/SectionLabel";
 
-export function MedsScreen({ navigate, onInfo }: { navigate: Navigate; onInfo: () => void }) {
+export function MedsScreen({ navigate, onInfo, onBell }: { navigate: Navigate; onInfo: () => void; onBell: () => void }) {
   const s = useMJ();
   const doseHistory: [string, string, string][] = [
     ["Dose 6", cal.dose6, "On time"],
@@ -17,7 +17,7 @@ export function MedsScreen({ navigate, onInfo }: { navigate: Navigate; onInfo: (
   ];
   return (
     <div className="mj-screen">
-      <AppBar onInfo={onInfo} />
+      <AppBar onInfo={onInfo} onBell={onBell} />
       <div className="mj-body scroll">
         <h1 className="mj-greet">Medications</h1>
         <p className="mj-greet-sub">Managed by ONE Journey Specialty Pharmacy</p>

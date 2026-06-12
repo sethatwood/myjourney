@@ -117,6 +117,17 @@ test("completing all three tasks clears the bell and shows all caught up", async
   await expect(page.locator(".mj-bell-dot")).toHaveCount(0);
   await expect(page.locator(".mj-alldone")).toContainText(`Next dose ${label(8)}`);
   await expect(page.locator(".mj-greet-sub")).toContainText("Nothing needs your attention");
+  // The bell still answers, even with nothing left to do.
+  await page.getByRole("button", { name: "Notifications" }).click();
+  await expect(page.locator(".mj-sheetwrap")).toContainText("all caught up");
+});
+
+test("bell opens notifications and deep-links to a task", async ({ page }) => {
+  await page.getByRole("button", { name: "Notifications" }).click();
+  await expect(page.getByRole("heading", { name: "Notifications" })).toBeVisible();
+  await expect(page.locator(".mj-sheetwrap .mj-taskcard")).toHaveCount(3);
+  await page.locator(".mj-sheetwrap").getByText("MS Symptom Check-In").click();
+  await expect(page.getByText("Question 1 of 4")).toBeVisible();
 });
 
 test("state survives a reload", async ({ page }) => {

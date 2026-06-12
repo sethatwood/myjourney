@@ -256,12 +256,12 @@ function JourneyHome({ navigate }: { navigate: Navigate }) {
   );
 }
 
-export function HomeScreen({ navigate, onInfo }: { navigate: Navigate; onInfo: () => void }) {
+export function HomeScreen({ navigate, onInfo, onBell }: { navigate: Navigate; onInfo: () => void; onBell: () => void }) {
   const s = useMJ();
   const open = openTaskCount(s);
   return (
     <div className="mj-screen">
-      <AppBar onInfo={onInfo} />
+      <AppBar onInfo={onInfo} onBell={onBell} />
       <div className="mj-body scroll">
         <h1 className="mj-greet">{greeting()}, Maya</h1>
         <p className="mj-greet-sub">

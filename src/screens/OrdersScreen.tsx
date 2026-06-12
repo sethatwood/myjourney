@@ -7,7 +7,7 @@ import { Ic } from "../components/Ic";
 import { SectionLabel } from "../components/SectionLabel";
 import { Stepper } from "../components/Stepper";
 
-export function OrdersScreen({ navigate, onInfo }: { navigate: Navigate; onInfo: () => void }) {
+export function OrdersScreen({ navigate, onInfo, onBell }: { navigate: Navigate; onInfo: () => void; onBell: () => void }) {
   const s = useMJ();
   const history: [string, string, string][] = [
     ["#1038", "Delivered " + cal.delivered1038, "Signed by M. Torres"],
@@ -16,7 +16,7 @@ export function OrdersScreen({ navigate, onInfo }: { navigate: Navigate; onInfo:
   ];
   return (
     <div className="mj-screen">
-      <AppBar onInfo={onInfo} />
+      <AppBar onInfo={onInfo} onBell={onBell} />
       <div className="mj-body scroll">
         <h1 className="mj-greet">Orders</h1>
         <p className="mj-greet-sub">Shipments from ONE Journey Specialty Pharmacy</p>
