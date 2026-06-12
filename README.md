@@ -26,7 +26,7 @@ The home screen is the thesis. The same patient state renders under two framings
 - **Action Center** answers *"what do I do next?"* — task-led, for people who process by completing.
 - **Journey** answers *"where am I in the arc of my therapy?"* — timeline-led, for people who process by orienting.
 
-This is a GenderMag-inspired accommodation: research on problem-solving styles shows interfaces silently optimized for one cognitive style exclude the other. The preference persists per patient. Everything else — heroes, tasks, timeline nodes, the notification badge — derives from one store, so completing a task anywhere updates everywhere.
+The split is inspired by [GenderMag](https://gendermag.org/), Margaret Burnett's inclusive-design method built on a finding that holds well beyond gender: people differ systematically in how they process information toward a goal — some act task-by-task, others build a comprehensive picture before acting — and an interface silently optimized for one style quietly fails the other. Here both styles get a first-class home, and the preference persists per patient. Everything else — heroes, tasks, timeline nodes, the notification badge — derives from one store, so completing a task anywhere updates everywhere.
 
 ## What's real vs. simulated
 
