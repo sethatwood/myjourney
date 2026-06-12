@@ -18,9 +18,11 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"], viewport: { width: 1280, height: 950 } },
     },
     {
+      // Project-level testIgnore replaces the top-level one, so both
+      // exclusions must be repeated here.
       name: "mobile",
       use: { ...devices["iPhone 14"] },
-      testIgnore: "**/a11y.spec.ts",
+      testIgnore: ["**/screenshots.spec.ts", "**/a11y.spec.ts"],
     },
   ],
 });
