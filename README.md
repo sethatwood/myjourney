@@ -45,7 +45,7 @@ Simulated:
 
 ## Stack
 
-- **Vite + React 18 + TypeScript**, strict mode. No state library: a 60-line external store on `useSyncExternalStore` with localStorage persistence.
+- **Vite + React 18 + TypeScript**, strict mode. No state library: a tiny external store on `useSyncExternalStore` with localStorage persistence.
 - **State-based routing** — a route string in app state. One document, no router dependency, no 404s on static hosts.
 - **Design system as plain CSS**: tokens and brand classes derived from the ONE Journey design language (Journey Blue as accent only, Inter, pill buttons with the sweep hover, hairlines over shadows). Self-hosted variable fonts.
 - **lucide-react** line icons at `strokeWidth 2`, per the brand's iconography rules.
