@@ -24,13 +24,17 @@ const rainPalette = [
 ];
 
 function makeRain(reduced: boolean): CSSProperties[] {
-  return Array.from({ length: 12 }, (_, i) => {
+  // One pill per lane: pills can never overlap, at any viewport width.
+  const laneCount = 12;
+  const laneWidth = 100 / laneCount;
+  const lanes = Array.from({ length: laneCount }, (_, i) => i).sort(() => Math.random() - 0.5);
+  return lanes.map((lane, i) => {
     const color = rainPalette[i % rainPalette.length];
     const fallSeconds = 48 + Math.random() * 72; // one full crossing: 48–120s
     return {
-      left: `${2 + Math.random() * 94}%`,
+      left: `${((lane + Math.random() * 0.3) * laneWidth).toFixed(2)}%`,
       top: reduced ? `${Math.random() * 80}%` : "-50vh",
-      width: 72, // uniform pills, varied only in length, speed, and opacity
+      width: "min(72px, 5.8vw)", // uniform, and always narrower than its lane
       height: `${14 + Math.random() * 28}vh`,
       background: color.bg,
       opacity: color.min + Math.random() * (color.max - color.min),
