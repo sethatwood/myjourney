@@ -14,7 +14,7 @@ export function RefillFlow({ navigate }: { navigate: Navigate }) {
   const [date, setDate] = useState(recommended);
 
   function confirm() {
-    store.set({ refill: { scheduled: true, deliveryLabel: date.replace(",", "") } });
+    store.set({ refill: { scheduled: true, deliveryLabel: date } });
     setStep(3);
   }
 

@@ -4,6 +4,13 @@
 
 # MyJourney
 
+<p>
+  <a href="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml"><img src="https://github.com/sethatwood/myjourney/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <img src="https://img.shields.io/badge/TypeScript-strict-143652" alt="TypeScript strict">
+  <img src="https://img.shields.io/badge/tests-12%20unit%20%2B%2020%20e2e-42b0ff" alt="Tests: 12 unit + 20 e2e">
+  <img src="https://img.shields.io/badge/deploys-Forge%20on%20green%20main-143652" alt="Deploys: Forge on green main">
+</p>
+
 **A working specialty-patient coordination app.** Maya Torres is six months into a specialty therapy for MS — MyJourney is the app that keeps her refills, symptom check-ins, co-pay assistance, and pharmacist in one coordinated place.
 
 **Live demo: [myjourney.help](https://myjourney.help)** — no login, works on desktop and phone, every flow completes end-to-end.
@@ -27,7 +34,7 @@ Real:
 
 - All three care tasks (refill scheduling, MS symptom check-in, co-pay renewal) and the pharmacist chat complete end-to-end and **persist across refresh** (localStorage).
 - Every date is **derived from the day you visit**, so the scenario always reads current: the refill window opened this morning, the next dose is eight days out.
-- Clean-profile safe: first visit with no stored state renders the full scenario; "Reset demo data" (the ⓘ overlay) restores it.
+- Clean-profile safe: first visit with no stored state renders the full scenario; "Reset demo data" (the info overlay in the app bar) restores it.
 
 Simulated:
 
